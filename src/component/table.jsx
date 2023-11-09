@@ -27,8 +27,7 @@ export const MuiTable = () => {
             <TableContainer component={Paper}>
              <Table sx={{ bgcolor:'primary.main',border:'1px solid white',borderRadius:'5px'}} 
              style={{color:'white'}} 
-             aria-label="simple table">
-               <caption>A basic table example with a caption</caption>
+             aria-label="simple-table">
                <TableHead>
                  <TableRow>
                    <TableCell align='center' style={{color:'black'}}>Name</TableCell>
