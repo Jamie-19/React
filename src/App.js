@@ -8,6 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { MuiTypography } from './component/typography';
+import { Typography } from "@material-ui/core";
 
 
 
@@ -28,11 +30,13 @@ function App() {
         })
   },[])
   return (
-     books && <TableContainer component={Paper}>
+     books&&(
+     <TableContainer component={Paper}>
+      <div>
+        <MuiTypography/>
       <Table sx={{ bgcolor:'primary.main',border:'1px solid white',borderRadius:'5px'}} 
       style={{color:'white'}} 
-      aria-label="simple table"
-      >
+      aria-label="simple table">
         <caption>A basic table example with a caption</caption>
         <TableHead>
           <TableRow>
@@ -58,9 +62,9 @@ function App() {
           ))}
         </TableBody>
       </Table>
+      </div>
     </TableContainer>
-    
-);
+));
 }
 
 
