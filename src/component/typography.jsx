@@ -2,21 +2,28 @@ import React from "react";
 import { useEffect , useState } from 'react';
 import axios from 'axios';
 import { Typography } from "@material-ui/core";
+import { Button } from "@mui/material";
 
 
 export const MuiTypography = () => {
-    const[para,setPara] = useState()
+    const[para,setPara] = useState(0)
+    const[paraIndex,setParaIndex] = useState([])
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/posts')
         .then(response =>{
             console.log(response.data)
-            const onepost =response.data[0]
-            setPara(onepost.body)
+            setPara(response.data.map((post)=>post.body))
         })
         .catch(error =>{
             console.log(error)
         });
-},[]);
+    },[]);
+    
+    const handlepara =()=>{
+        setParaIndex((paraIndex+1)%para.length)
+    };
+    
+
     return (
         <div>
             <div style ={{
@@ -44,8 +51,20 @@ export const MuiTypography = () => {
                     alignItems: "center",
                     padding: "20px",    
                     backgroundColor:"hotpink",
+                    height:"30vh",
                     }}>
-                       {para&& <Typography variant="body1">{para}</Typography>}</div>
+                     <div style={{padding:"50px"}}><Typography variant="body1">{para[paraIndex]}</Typography></div>
+                     <div style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: "30px",
+                                }}>
+                    <Button variant="contained" color="primary" onClick={handlepara} >Next</Button>
+                        </div>                       
+                    </div>
             </div>
-        );
-}
+    
+    );
+                }
